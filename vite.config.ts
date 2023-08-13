@@ -10,6 +10,9 @@ export default defineConfig({
       }
     })
   ],
+  server: {
+    open: 'index.html'
+  },
   resolve: {
     alias: {
       src: "/src"
