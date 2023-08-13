@@ -1,9 +1,11 @@
 export interface sectionType {
   content: string;
-  data?: contentsType[];
+  data?: projectDataType[];
+  viewProjectImage?: React.MouseEventHandler<HTMLButtonElement> | any;
 }
 
-export interface contentsType {
+
+export interface projectDataType {
   id: number;
   since: string;
   title: string;

@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
-import { contentsType, sectionType } from 'src/types/home/section';
+import { projectDataType, sectionType } from 'src/types/home/section';
 
 
-const Section = ({ content, data }: sectionType) => {
+const Section = ({ content, data, viewProjectImage }: sectionType) => {
   return (
     <>
     {
@@ -21,7 +21,7 @@ const Section = ({ content, data }: sectionType) => {
        <>
        {
         data && (
-          data.map((contents:contentsType, dataIdx:number) => (
+          data.map((contents:projectDataType, dataIdx:number) => (
             <div key={dataIdx}>
               <SmallTitle><span>{contents.since}</span>{contents.title}</SmallTitle>
               <ProjectInfo>
@@ -33,8 +33,8 @@ const Section = ({ content, data }: sectionType) => {
                 {
                   contents.img && (
                     <li>
-                      <ImgButton>이미지1</ImgButton>
-                      <ImgButton>이미지2</ImgButton>
+                      <ImgButton onClick={() => viewProjectImage?.(`${contents.img}1`)}>이미지1</ImgButton>
+                      <ImgButton onClick={() => viewProjectImage?.(`${contents.img}2`)}>이미지2</ImgButton>
                     </li>
                   )
                 }
