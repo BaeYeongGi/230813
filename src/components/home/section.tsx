@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { projectDataType, sectionType } from 'src/types/home/section';
+import { projectDataType, sectionType } from 'src/types/home';
 
 
 const Section = ({ content, data, viewProjectImage }: sectionType) => {
@@ -32,9 +32,9 @@ const Section = ({ content, data, viewProjectImage }: sectionType) => {
                 }
                 {
                   contents.img && (
-                    <li>
-                      <ImgButton onClick={() => viewProjectImage?.(`${contents.img}1`)}>이미지1</ImgButton>
-                      <ImgButton onClick={() => viewProjectImage?.(`${contents.img}2`)}>이미지2</ImgButton>
+                    <li className="img_button_wrap">
+                      <ImgButton onClick={() => viewProjectImage?.(`${contents.img}1`)}>First Screen</ImgButton>
+                      <ImgButton onClick={() => viewProjectImage?.(`${contents.img}2`)}>Second Screen</ImgButton>
                     </li>
                   )
                 }
@@ -91,9 +91,20 @@ const ProjectInfo = styled.ul`
       color:#3838ca;
       font-weight:700;
     }
+    &.img_button_wrap {
+      margin:10px 0 0 8px;
+      &::before {
+        display:none;
+
+      }
+    }
   }
 `;
 
 const ImgButton = styled.button`
-
+  padding:4px 8px;
+  border:1px solid #ccc;
+  background-color:#f2f2f2;
+  margin-right:6px;
+  cursor:pointer;
 `;

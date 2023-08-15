@@ -12,3 +12,9 @@ export interface projectDataType {
   list: Array<string>;
   img?: string;
 }
+
+export interface imgType {
+  content: string;
+  closeImg: React.MouseEventHandler<HTMLDivElement>;
+  data?: projectDataType[];
+}
