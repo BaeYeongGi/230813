@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import styled from '@emotion/styled';
+import { ReactComponent as SelectedIcon  } from 'src/assets/images/checked.svg';
 import { imgType } from 'src/types/home';
 
 
 const Img = ({content, closeImg, data} : imgType) => {
-  console.log('data', content)
+  const contentType = content.includes('qatar') ? 'qatar' : '';
+  const [ imgUpdate, setImgUpdate ] = useState<string>(content);
+
+
+    const updateImgContent = (name: string) => {
+      setImgUpdate(name)
+    }
+
   return (
-    <Dimmed onClick={closeImg}> 
-      <span className="close"></span>
+    <Dimmed onClick={closeImg} className={contentType}> 
+      <span className="close" onClick={closeImg} aria-label="이미지 포트폴리오 창닫기"></span>
       <ImgContainer>
         <picture>
-          <source srcSet={`src/assets/images/img_${content}.png`} type="image/webp"/>
-          <img className="main_img" src={`src/assets/images/img_${content}.webp`} alt="" />
+          <source srcSet={`src/assets/images/img_${imgUpdate}.webp`} type="image/webp"/>
+          <img className="main_img" src={`src/assets/images/img_${imgUpdate}.png`} alt="" />
         </picture>
         {/* <picture>
           <source srcSet={`src/assets/images/img_beijing1.png`} type="image/webp"/>
@@ -21,19 +29,29 @@ const Img = ({content, closeImg, data} : imgType) => {
       
       {
         data && (
-          data.map((content, idx) =>{
+          data.map((dataImg, idx) =>{
               return (
-              content.img && (
+                dataImg.img && (
                 <ImgList key={idx}>
-                  <li>
-                    <source srcSet={`src/assets/images/img_${content.img}1.png`} type="image/webp"/>
-                    <img src={`src/assets/images/img_${content.img}1.webp`} alt=""/>
-                    <p>{content.title}</p>
+                  <li onClick={() => updateImgContent(dataImg.img + '1')}>
+                    <div className="img_wrap">
+                      <picture>
+                        <source srcSet={`src/assets/images/img_${dataImg.img}1.webp`} type="image/webp"/>
+                        <img src={`src/assets/images/img_${dataImg.img}1.png`} alt=""/>
+                      </picture>
+                      {imgUpdate === dataImg.img + '1' && <SelectedIcon/>}
+                    </div>
+                    <p>{dataImg.title}_1</p>
                   </li>
-                  <li>
-                    <source srcSet={`src/assets/images/img_${content.img}2.png`} type="image/webp"/>
-                    <img src={`src/assets/images/img_${content.img}2.webp`} alt=""/>
-                    <p>{content.title}</p>
+                  <li onClick={() => updateImgContent(dataImg.img + '2')}>
+                    <div className="img_wrap">
+                      <picture>
+                        <source srcSet={`src/assets/images/img_${dataImg.img}2.webp`} type="image/webp"/>
+                        <img src={`src/assets/images/img_${dataImg.img}2.png`} alt=""/>
+                      </picture>
+                      {imgUpdate === dataImg.img + '2' && <SelectedIcon/>}
+                    </div>
+                    <p>{dataImg.title}_2</p>
                   </li>
                 </ImgList>
                 )
@@ -43,8 +61,6 @@ const Img = ({content, closeImg, data} : imgType) => {
         )
       }
       
-       
-
     </Dimmed>
   );
 };
@@ -108,21 +124,42 @@ const ImgList = styled.ul`
   // height:50px;
   margin-left:10px;
   li {
-    width:140px;
+    width:150px;
     margin: 4px 4px 14px 4px;
     cursor:pointer;
     &:hover {
-      img {
-        border-color:#0000d1;
-      }      
-
+      .img_wrap {
+        &::before {
+          content:'';
+          background-color:rgba(0,0,0,0.4);
+        }
+      }
     }
-    img {
-      width:100%;
-      height:140px;
-      object-fit:cover;
-      border:2px solid #ccc;
-      box-sizing:border-box;
+    .img_wrap {
+      position:relative;
+      svg {
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%, -50%);
+      }
+      img {
+        width:100%;
+        height:150px;
+        object-fit:cover;
+        border:2px solid #ccc;
+        box-sizing:border-box;
+      }
+      &::before {
+        content:'';
+        display:block;
+        width:100%;
+        height:150px;
+        position:absolute;
+        top:0;
+        left:0;
+        background-color:rgba(0,0,0,0.6);
+      }
     }
     p {
       line-height:1.2;

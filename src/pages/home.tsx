@@ -19,11 +19,10 @@ const Home = () => {
     setIsViewImgContent(true);
   }
 
-  const closeProjectImg = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+  const closeProjectImage = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
     const target = e.target as HTMLImageElement;
-    if(target.tagName === 'IMG'){
-      setIsViewImgContent(true);
-    } else {
+    const ctarget = e.currentTarget as HTMLImageElement;
+    if(target === ctarget){
       setIsViewImgContent(false);
     }
   }
@@ -31,6 +30,7 @@ const Home = () => {
   return (
     <Container>
       <Section content="top" />
+      <SectionWrap>
       <Title text="프로젝트" />
       <Section
         content="project"
@@ -41,24 +41,33 @@ const Home = () => {
         isViewImgContent && (
           <ProjectImg
             content={imgContent}
-            closeImg={closeProjectImg}  
+            closeImg={closeProjectImage}  
             data={projectData}
           />
         )
       }
-      <Title text="기술" />
-      <Title text="레거시 서비스와 함께한 노력들" />
-      <Title text="그 외" />
-      <Title text="링크" />
+      </SectionWrap>
+      <SectionWrap>
+        <Title text="기술" />
+        <Title text="레거시 서비스와 함께한 노력들" />
+        <Title text="그 외" />
+        <Title text="링크" />
+      </SectionWrap>
     </Container>
-
   );
 };
 
 export default Home;
 
 const Container = styled.section`
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
   width:1280px;
   margin:0 auto;
   
+`;
+
+const SectionWrap = styled.div`
+  width:50%;
 `;
