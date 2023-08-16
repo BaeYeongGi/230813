@@ -5,13 +5,11 @@ import { imgType } from 'src/types/home';
 
 
 const Img = ({content, closeImg, data} : imgType) => {
-  const contentType = content.includes('qatar') ? 'qatar' : '';
   const [ imgUpdate, setImgUpdate ] = useState<string>(content);
-
-
-    const updateImgContent = (name: string) => {
-      setImgUpdate(name)
-    }
+  const contentType = imgUpdate.includes('qatar') ? 'qatar' : '';
+  const updateImgContent = (name: string) => {
+    setImgUpdate(name)
+  }
 
   return (
     <Dimmed onClick={closeImg} className={contentType}> 
@@ -21,12 +19,8 @@ const Img = ({content, closeImg, data} : imgType) => {
           <source srcSet={`src/assets/images/img_${imgUpdate}.webp`} type="image/webp"/>
           <img className="main_img" src={`src/assets/images/img_${imgUpdate}.png`} alt="" />
         </picture>
-        {/* <picture>
-          <source srcSet={`src/assets/images/img_beijing1.png`} type="image/webp"/>
-          <img className="main_img" src={`src/assets/images/img_beijing1.webp`} alt="" />
-        </picture>         */}
       </ImgContainer>
-      
+      <ImgListWrap>
       {
         data && (
           data.map((dataImg, idx) =>{
@@ -60,7 +54,7 @@ const Img = ({content, closeImg, data} : imgType) => {
           )
         )
       }
-      
+      </ImgListWrap>
     </Dimmed>
   );
 };
@@ -70,7 +64,8 @@ export default Img;
 const Dimmed = styled.div`
   display:flex;
   align-items:center;
-  justify-content:space-evenly;
+  justify-content:center;
+  // justify-content:space-evenly;
   width:100%;
   height:100%;
   position:fixed;
@@ -104,7 +99,12 @@ const Dimmed = styled.div`
       left:0;
       transform:rotate(135deg);
     }    
+  }
+  &.qatar {
 
+    .css-gx8u1r {
+      width:100%;
+    }
   }
 `;
 
@@ -113,12 +113,19 @@ const ImgContainer = styled.div`
     display:block;
     max-width:1400px;
     max-height:800px;
+    margin:0 16px 0 0;
     box-shadow:0 4px 4px 0 rgba(0,0,0,0.2);
   }
 `;
 
+const ImgListWrap = styled.div`
+  overflow-y:auto;
+  width:360px;
+  height:100%;
+`;
+
 const ImgList = styled.ul`
-  // display:flex;
+  display:flex;
   // flex-wrap:wrap;
   // width:300px;
   // height:50px;
