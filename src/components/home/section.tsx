@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
-import { projectDataType, sectionType } from 'src/types/home';
+import { jsonDataType, sectionType } from 'src/types/home';
 
 
-const Section = ({ content, data, viewProjectImage }: sectionType) => {
+const Section = ({ content, projectData, viewProjectImage, legacyData }: sectionType) => {
+  console.log(legacyData)
   return (
     <>
     {
@@ -20,8 +21,8 @@ const Section = ({ content, data, viewProjectImage }: sectionType) => {
       content === 'project' && (
        <>
        {
-        data && (
-          data.map((contents:projectDataType, dataIdx:number) => (
+        projectData && (
+          projectData.map((contents:jsonDataType, dataIdx:number) => (
             <div key={dataIdx}>
               <SmallTitle><span>{contents.since}</span>{contents.title}</SmallTitle>
               <ProjectInfo>
@@ -38,7 +39,6 @@ const Section = ({ content, data, viewProjectImage }: sectionType) => {
                     </li>
                   )
                 }
-               
               </ProjectInfo>
             </div>
           ))
@@ -58,7 +58,7 @@ const Section = ({ content, data, viewProjectImage }: sectionType) => {
           <dd>기본적인 React Hook을 활용한 SPA개발이 가능합니다.</dd>
           <dt><SmallTitle>Webpack Gulp</SmallTitle></dt>
           <dd>빌드툴을 이용하여 중복코드 & 반복작업을 최소화 하여 산출물 관리가 가능합니다.</dd>
-          <dt><SmallTitle>Html CSS SCSS CSS-in-js</SmallTitle></dt>
+          <dt><SmallTitle>Html css scss css-in-js</SmallTitle></dt>
           <dd>웹 표준과 접근성을 고려한 문서 작성이 가능하고 다양한 스타일링에 익숙합니다.</dd>
           <dt><SmallTitle>Git Github SVN</SmallTitle></dt>
           <dd>git을 이용한 형상 관리가 가능합니다.</dd>
@@ -68,35 +68,36 @@ const Section = ({ content, data, viewProjectImage }: sectionType) => {
     {
       content === "legacy" && (
         <LegacyInfo>
-          <li><SmallTitle>기존 CSS에 의존하던 프로젝트에 SCSS를 도입하였습니다.</SmallTitle>
-            <ul> 
-              <li>중복된 선택자와 코드를 최소화 하였습니다.</li>
-              <li>추후 유지보수를 위해 가독성을 높였습니다.</li>
-            </ul>
-          </li>
-          <li><SmallTitle>웹 최적화를 통해 페이지 렌더링 속도를 개선하였습니다.</SmallTitle>
-            <ul>
-              <li>Light House 지표를 통해 LCP 수치를 최적화 하였습니다.</li>
-              <li>라이브러리 의존도를 낮추고 가능한 script 작성을 통해 구현하였습니다.</li>
-              <li>css, js 문서의 용량을 줄이기 위해 minified 옵션을 적용하였습니다.</li>
-            </ul>            
-          </li>
-          <li><SmallTitle>검색엔진 최적화에 신경썼습니다.</SmallTitle>
-            <ul>
-              <li>목적에 맞는 태그를 사용하였습니다.</li>
-              <li>meta description, title 내용을 개선하였습니다.</li>
-              <li>robots.txt, sitemap.xml 에 유효한 값을 제공하였습니다.</li>
-              <li>이미지 영역에 유효한 값을 제공하였습니다.</li>
-            </ul>
-          </li>
-          <li><SmallTitle>크로스 브라우징 이슈를 능동적으로 대처하였습니다.</SmallTitle>
-            <ul>
-              <li>IE, Chrome, Edge, Android, IOS, Mac, Windows</li>
-              <li>브라우저, 모바일기기, 운영체제를 고려하여 동일한 동작과 스타일을 제공하였습니다.</li>
-              <li>Chrome inspect 와 Mac Xcode simulator를 통해 실시간 모바일 화면을 모니터링 하였습니다.</li>
-            </ul>
-          </li>
+          {
+            legacyData && (
+              legacyData.map((contents:jsonDataType, dataIdx:number) => (
+                <li key={dataIdx}><SmallTitle>{contents.title}</SmallTitle>
+                  <InfoList>
+                    {
+                      contents.list.map((cnts, listIdx:number) => (
+                        <li key={listIdx}>{cnts}</li>
+                      ))
+                    }
+                  </InfoList>
+                </li>
+              ))
+            )
+          }
         </LegacyInfo>
+      )
+    }
+    {
+      content === "others" && (
+        <OthersInfo>
+
+        </OthersInfo>
+      )
+    }
+    {
+      content === "link" && (
+        <LinkInfo>
+          
+        </LinkInfo>
       )
     }
     </>
@@ -127,6 +128,19 @@ const SmallTitle = styled.h3`
     font-weight:300;
     margin:0 6px 0 0;
     color:#777;
+  }
+`;
+
+const InfoList = styled.ul`
+  margin: 0 0 10px 0;
+  padding: 0 0 0 24px;
+  li {
+    line-height:1.5;
+    &::before {
+      content:'-';
+      margin:0 4px 0 -16px;
+      padding:0 0 0 8px;
+    }
   }
 `;
 
@@ -180,17 +194,13 @@ const LegacyInfo = styled.ul`
     h3 {
       margin: 0 0 10px 0;
     }
-    > ul {
-      margin: 0 0 10px 0;
-      padding: 0 0 0 24px;
-      li {
-        line-height:1.5;
-        &::before {
-          content:'-';
-          margin:0 4px 0 -16px;
-          padding:0 0 0 8px;
-        }
-      }
-    }
   }
+`;
+
+const OthersInfo = styled.ul`
+
+`;
+
+const LinkInfo = styled.ul`
+
 `;

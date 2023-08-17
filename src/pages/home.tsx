@@ -3,15 +3,20 @@ import styled from '@emotion/styled';
 import Section from "src/components/home/section";
 import Title from "src/components/home/title";
 import projectJSON from 'src/json/home/project.json';
+import legacyJSON from 'src/json/home/legacy.json';
 import ProjectImg from 'src/components/home/image';
-import { projectDataType } from 'src/types/home';
+import { jsonDataType } from 'src/types/home';
 
 const Home = () => {
-  const [projectData, setProjectData] = useState<projectDataType[]>([]); // 초기값을 빈 배열로 설정
+  const [projectData, setProjectData] = useState<jsonDataType[]>([]); // 초기값을 빈 배열로 설정
+  const [legacyData, setLegacyData] = useState<jsonDataType[]>([]);
   const [imgContent, setImgContent] = useState('');
   const [isViewImgContent, setIsViewImgContent] = useState(false);
   useEffect(() => {
-    setProjectData(projectJSON.data)
+    setProjectData(projectJSON.data);
+  },[])
+  useEffect(() => {
+    setLegacyData(legacyJSON.data);
   },[])
 
   const setProjectImg = (params:string) => {
@@ -34,7 +39,7 @@ const Home = () => {
       <Title text="프로젝트" />
       <Section
         content="project"
-        data={projectData}
+        projectData={projectData}
         viewProjectImage={setProjectImg}
       />
       {
@@ -42,7 +47,7 @@ const Home = () => {
           <ProjectImg
             content={imgContent}
             closeImg={closeProjectImage}  
-            data={projectData}
+            projectData={projectData}
           />
         )
       }
@@ -55,9 +60,16 @@ const Home = () => {
         <Title text="레거시 서비스와 함께한 노력들" />
         <Section 
           content="legacy"
+          legacyData={legacyData}
         />        
         <Title text="그 외" />
+        <Section 
+          content="others"
+        />  
         <Title text="링크" />
+        <Section 
+          content="link"
+        />  
       </SectionWrap>
     </Container>
   );

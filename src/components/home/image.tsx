@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { ReactComponent as SelectedIcon  } from 'src/assets/images/checked.svg';
 import { imgType } from 'src/types/home';
 
-const Img = ({content, closeImg, data} : imgType) => {
+const Img = ({content, closeImg, projectData} : imgType) => {
   const [ imgUpdate, setImgUpdate ] = useState<string>(content);
   const contentType = imgUpdate.includes('qatar') ? 'qatar' : '';
   const updateImgContent = (name: string) => {
@@ -30,8 +30,8 @@ const Img = ({content, closeImg, data} : imgType) => {
       </ImgContainer>
       <ImgListWrap ref={imgListRef}>
       {
-        data && (
-          data.map((dataImg, idx) =>{
+        projectData && (
+          projectData.map((dataImg, idx) =>{
               return (
                 dataImg.img && (
                 <ImgList key={idx}>
