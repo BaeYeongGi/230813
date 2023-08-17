@@ -48,8 +48,14 @@ const Home = () => {
       }
       </SectionWrap>
       <SectionWrap>
-        <Title text="기술" />
+        <Title text="사용 가능한 기술" />
+        <Section 
+          content="tech"
+        />
         <Title text="레거시 서비스와 함께한 노력들" />
+        <Section 
+          content="legacy"
+        />        
         <Title text="그 외" />
         <Title text="링크" />
       </SectionWrap>

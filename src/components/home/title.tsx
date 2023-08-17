@@ -27,7 +27,7 @@ const NormalTitle = styled.h2`
       width:6px;
       height:6px;
       border-radius:6px;
-      border:2px solid #222;
+      border:2px solid #4072ff;
       position:absolute;
       top:0;
       left:0;

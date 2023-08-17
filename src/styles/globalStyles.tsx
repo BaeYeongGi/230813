@@ -151,7 +151,7 @@ const style = (theme: Theme) => css`
   }
 
   /* reset */
-  h1, h2, h3, ul, p, span, div, img {
+  h1, h2, h3, ul, p, span, div, img, dl, dt, dd {
     margin:0;
     padding:0;
     font-size: 100%;

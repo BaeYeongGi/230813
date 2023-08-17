@@ -1,15 +1,23 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { ReactComponent as SelectedIcon  } from 'src/assets/images/checked.svg';
 import { imgType } from 'src/types/home';
-
 
 const Img = ({content, closeImg, data} : imgType) => {
   const [ imgUpdate, setImgUpdate ] = useState<string>(content);
   const contentType = imgUpdate.includes('qatar') ? 'qatar' : '';
   const updateImgContent = (name: string) => {
-    setImgUpdate(name)
+    setImgUpdate(name);
   }
+  const imgListRef = useRef<HTMLDivElement>(null)
+
+  // 프로젝트 ScreenButton 클릭시 scroll position 값 조정
+  useEffect(() => {
+    const imgList = imgListRef.current?.getElementsByClassName(imgUpdate)[0];
+    if(imgListRef.current && imgList instanceof HTMLElement){
+      imgListRef.current.scrollTo(0, imgList.offsetTop - 40);
+    }
+  },[])
 
   return (
     <Dimmed onClick={closeImg} className={contentType}> 
@@ -20,14 +28,16 @@ const Img = ({content, closeImg, data} : imgType) => {
           <img className="main_img" src={`src/assets/images/img_${imgUpdate}.png`} alt="" />
         </picture>
       </ImgContainer>
-      <ImgListWrap>
+      <ImgListWrap ref={imgListRef}>
       {
         data && (
           data.map((dataImg, idx) =>{
               return (
                 dataImg.img && (
                 <ImgList key={idx}>
-                  <li onClick={() => updateImgContent(dataImg.img + '1')}>
+                  <li
+                    className={dataImg.img + '1'}  
+                    onClick={() => updateImgContent(dataImg.img + '1')}>
                     <div className="img_wrap">
                       <picture>
                         <source srcSet={`src/assets/images/img_${dataImg.img}1.webp`} type="image/webp"/>
@@ -37,7 +47,9 @@ const Img = ({content, closeImg, data} : imgType) => {
                     </div>
                     <p>{dataImg.title}_1</p>
                   </li>
-                  <li onClick={() => updateImgContent(dataImg.img + '2')}>
+                  <li  
+                  className={dataImg.img + '2'}                
+                  onClick={() => updateImgContent(dataImg.img + '2')}>
                     <div className="img_wrap">
                       <picture>
                         <source srcSet={`src/assets/images/img_${dataImg.img}2.webp`} type="image/webp"/>
@@ -101,11 +113,10 @@ const Dimmed = styled.div`
     }    
   }
   &.qatar {
-
-    .css-gx8u1r {
-      width:100%;
+    .main_img {
+      width:auto;
     }
-  }
+  } 
 `;
 
 const ImgContainer = styled.div`
@@ -115,6 +126,7 @@ const ImgContainer = styled.div`
     max-height:800px;
     margin:0 16px 0 0;
     box-shadow:0 4px 4px 0 rgba(0,0,0,0.2);
+    width:470px;
   }
 `;
 
@@ -122,6 +134,17 @@ const ImgListWrap = styled.div`
   overflow-y:auto;
   width:360px;
   height:100%;
+  &::-webkit-scrollbar {
+    width:10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius:10px;
+    background:#222;
+  }
+  &::-webkit-scrollbar-track {
+    background-color:#fff;
+    border-radius:10px;
+  }
 `;
 
 const ImgList = styled.ul`
