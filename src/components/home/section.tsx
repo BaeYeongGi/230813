@@ -1,9 +1,9 @@
+import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 import { jsonDataType, sectionType } from 'src/types/home';
 
-
-const Section = ({ content, projectData, viewProjectImage, legacyData }: sectionType) => {
-  console.log(legacyData)
+const Section = ({ content, data, viewProjectImage }: sectionType) => {
+  
   return (
     <>
     {
@@ -21,13 +21,13 @@ const Section = ({ content, projectData, viewProjectImage, legacyData }: section
       content === 'project' && (
        <>
        {
-        projectData && (
-          projectData.map((contents:jsonDataType, dataIdx:number) => (
+        data?.project && (
+          data.project.map((contents:jsonDataType, dataIdx:number) => (
             <div key={dataIdx}>
               <SmallTitle><span>{contents.since}</span>{contents.title}</SmallTitle>
               <ProjectInfo>
                 {
-                  contents.list.map((cnts, listIdx:number) => (
+                  contents.list?.map((cnts, listIdx:number) => (
                     <li key={listIdx}>{cnts}</li>
                   ))
                 }
@@ -49,32 +49,30 @@ const Section = ({ content, projectData, viewProjectImage, legacyData }: section
     }
     {
       content === "tech" && (      
-        <TechInfo>
-          <dt><SmallTitle>Javascript</SmallTitle></dt>
-          <dd>ES2015를 포함한 문법을 활용하며 최신 동향을 꾸준히 살피고 학습합니다.</dd>
-          <dt><SmallTitle>Typescript</SmallTitle></dt>
-          <dd>정적 타입 언어를 활용하여 Javascript 개발을 하는 것을 지향합니다.</dd>
-          <dt><SmallTitle>React</SmallTitle></dt>
-          <dd>기본적인 React Hook을 활용한 SPA개발이 가능합니다.</dd>
-          <dt><SmallTitle>Webpack Gulp</SmallTitle></dt>
-          <dd>빌드툴을 이용하여 중복코드 & 반복작업을 최소화 하여 산출물 관리가 가능합니다.</dd>
-          <dt><SmallTitle>Html css scss css-in-js</SmallTitle></dt>
-          <dd>웹 표준과 접근성을 고려한 문서 작성이 가능하고 다양한 스타일링에 익숙합니다.</dd>
-          <dt><SmallTitle>Git Github SVN</SmallTitle></dt>
-          <dd>git을 이용한 형상 관리가 가능합니다.</dd>
-        </TechInfo>
+       <TechInfoWrap>
+          {
+            data?.tech && (
+              data.tech.map((contents:jsonDataType, dataIdx:number) => (
+                <TechInfo key={dataIdx}>
+                  <dt><SmallTitle>{contents.title}</SmallTitle></dt>
+                  <dd>{contents.text}</dd>
+                </TechInfo>
+              ))
+            )
+          }
+      </TechInfoWrap>
       )
     }
     {
       content === "legacy" && (
         <LegacyInfo>
           {
-            legacyData && (
-              legacyData.map((contents:jsonDataType, dataIdx:number) => (
+            data?.legacy && (
+              data.legacy.map((contents:jsonDataType, dataIdx:number) => (
                 <li key={dataIdx}><SmallTitle>{contents.title}</SmallTitle>
                   <InfoList>
                     {
-                      contents.list.map((cnts, listIdx:number) => (
+                      contents.list?.map((cnts, listIdx:number) => (
                         <li key={listIdx}>{cnts}</li>
                       ))
                     }
@@ -89,14 +87,18 @@ const Section = ({ content, projectData, viewProjectImage, legacyData }: section
     {
       content === "others" && (
         <OthersInfo>
-
+          <li><h3>slack, outlook 업무용 메신저를 사용한 비동기 커뮤니케이션에 익숙합니다.</h3></li>
+          <li><h3>confluence, jira 협업 툴 사용에 익숩합니다.</h3></li>
+          <li><h3>소나큐브 코드품질 관리 분석도구를 통해 불필요한 코드와 버그 & 코드스멜을 수정할 수 있습니다.</h3></li>
         </OthersInfo>
       )
     }
     {
       content === "link" && (
         <LinkInfo>
-          
+          <li><a href="#"><h3>Blog</h3></a></li>
+          <li><a href="#"><h3>Mail</h3></a></li>
+          <li><a href="#"><h3>GitHub</h3></a></li>
         </LinkInfo>
       )
     }
@@ -177,8 +179,12 @@ const ImgButton = styled.button`
   }
 `;
 
+const TechInfoWrap = styled.div`
+  margin-bottom:40px;
+`;
+
 const TechInfo = styled.dl`
-margin:0 0 40px 0;
+margin:0 0 4px 0;
 line-height:1.5;
   dt {
     margin:0 0 4px 0;
