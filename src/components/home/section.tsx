@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
+import { ReactComponent as IconGithub  } from 'src/assets/images/icon_github.svg';
+import { ReactComponent as IconBlog  } from 'src/assets/images/icon_blog.svg';
+import { ReactComponent as IconEmail  } from 'src/assets/images/icon_email.svg';
+
 import { jsonDataType, sectionType } from 'src/types/home';
 
 const Section = ({ content, data, viewProjectImage }: sectionType) => {
@@ -19,7 +23,7 @@ const Section = ({ content, data, viewProjectImage }: sectionType) => {
     }
     {
       content === 'project' && (
-       <>
+       <ProjectWrap>
        {
         data?.project && (
           data.project.map((contents:jsonDataType, dataIdx:number) => (
@@ -44,7 +48,7 @@ const Section = ({ content, data, viewProjectImage }: sectionType) => {
           ))
         )
        }
-        </>
+        </ProjectWrap>
       )
     }
     {
@@ -90,15 +94,17 @@ const Section = ({ content, data, viewProjectImage }: sectionType) => {
           <li><h3>slack, outlook 업무용 메신저를 사용한 비동기 커뮤니케이션에 익숙합니다.</h3></li>
           <li><h3>confluence, jira 협업 툴 사용에 익숩합니다.</h3></li>
           <li><h3>소나큐브 코드품질 관리 분석도구를 통해 불필요한 코드와 버그 & 코드스멜을 수정할 수 있습니다.</h3></li>
+          <li><h3>항상 배워야 한다는 자세로 임하며, 업무에 필요한 기술이 있다면 학습하여 활용하도록 노력하겠습니다.</h3></li>
         </OthersInfo>
       )
     }
     {
       content === "link" && (
         <LinkInfo>
-          <li><a href="#"><h3>Blog</h3></a></li>
-          <li><a href="#"><h3>Mail</h3></a></li>
-          <li><a href="#"><h3>GitHub</h3></a></li>
+          <li><a href="https://github.com/baeyeonggi" target="blank"><IconGithub/><h3>GitHub</h3></a></li>
+          <li><a href="https://blog.naver.com/byk5913" target="blank"><IconBlog/><h3>Blog</h3></a></li>
+          <li><a href="mailto:byg5913@gmail.com"><IconEmail/><h3>Mail</h3></a></li>
+
         </LinkInfo>
       )
     }
@@ -110,7 +116,6 @@ export default Section;
 
 const TopSection = styled.section`
   text-align:center;
-  margin:0 0 50px 0;
   .big_title {
     font-size:3.6rem;
     line-height:1.4;
@@ -123,7 +128,7 @@ const TopSection = styled.section`
 `;
 
 const SmallTitle = styled.h3`
-  font-size:2rem;
+  font-size:2.2rem;
   font-weight:700;
   width:100%;
   span {
@@ -134,7 +139,7 @@ const SmallTitle = styled.h3`
 `;
 
 const InfoList = styled.ul`
-  margin: 0 0 10px 0;
+  margin: 0 0 20px 0;
   padding: 0 0 0 24px;
   li {
     line-height:1.5;
@@ -146,10 +151,29 @@ const InfoList = styled.ul`
   }
 `;
 
+const ProjectWrap = styled.div`
+  > div {
+    &:last-child {
+      > ul {
+        padding-bottom:0;
+      }
+    }
+    &:not(:last-child) {
+      border-bottom:1px solid #ddd;
+      margin-bottom:20px;
+
+    }
+  }
+`;
+
 const ProjectInfo = styled.ul`
-  padding:10px 0 30px 16px;
+  padding:10px 0 24px 16px;
+  display:flex;
+  flex-wrap:wrap;
   li {
+    width:50%;
     line-height:1.5;
+    font-size:1.6rem;
     &::before {
       content:'-';
       margin:0 4px 0 0;
@@ -181,22 +205,36 @@ const ImgButton = styled.button`
 
 const TechInfoWrap = styled.div`
   margin-bottom:40px;
+  > dl {
+    &:last-child {
+      margin-bottom:0;
+    }
+    &:not(:last-child){
+      border-bottom:1px solid #ddd;
+      padding-bottom:16px;
+    }
+  }
 `;
 
 const TechInfo = styled.dl`
-margin:0 0 4px 0;
+margin:0 0 12px 0;
 line-height:1.5;
   dt {
     margin:0 0 4px 0;
   }
   dd {
-    margin:0 0 4px 0;
+    font-size:1.6rem;
   }
 `;
 
 const LegacyInfo = styled.ul`
-  margin:0 0 40px 0;
+
   > li {
+    font-size:1.6rem;
+    &:not(:last-child) {
+      border-bottom:1px solid #ddd;
+      margin:0 0 20px 0;
+    }
     h3 {
       margin: 0 0 10px 0;
     }
@@ -204,9 +242,45 @@ const LegacyInfo = styled.ul`
 `;
 
 const OthersInfo = styled.ul`
-
+  > li {
+    line-height:1.5;
+    &::before{
+      content:'-';
+      margin:0 4px 0 0;
+    }
+    h3 {
+      display:inline-block;
+      vertical-align:top;
+      font-weight:normal;
+    }
+  }
 `;
 
 const LinkInfo = styled.ul`
-
+  display:flex;
+  margin-bottom:100px;
+  > li {
+    margin-right:6px;
+    :hover {
+      background-color:#f2f2f2;
+    }
+    > a {
+      display:block;
+      text-align:center;
+      width:80px;
+      padding:10px 0;
+      border:1px solid #666;
+      border-radius:4px;
+      svg {
+        stroke:#000;
+      }
+      h3 {
+        width:100%;
+        margin:0 0 0 0;
+        font-size:1.6rem;
+        color:#000;
+        font-weight:400; 
+      }
+    }
+  }
 `;

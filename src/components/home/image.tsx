@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import { ReactComponent as SelectedIcon  } from 'src/assets/images/checked.svg';
+import { ReactComponent as IconSelected  } from 'src/assets/images/icon_checked.svg';
 import { imgType } from 'src/types/home';
 
 const Img = ({content, closeImg, data} : imgType) => {
@@ -43,7 +43,7 @@ const Img = ({content, closeImg, data} : imgType) => {
                         <source srcSet={`src/assets/images/img_${dataImg.img}1.webp`} type="image/webp"/>
                         <img src={`src/assets/images/img_${dataImg.img}1.png`} alt=""/>
                       </picture>
-                      {imgUpdate === dataImg.img + '1' && <SelectedIcon/>}
+                      {imgUpdate === dataImg.img + '1' && <IconSelected/>}
                     </div>
                     <p>{dataImg.title}_1</p>
                   </li>
@@ -55,7 +55,7 @@ const Img = ({content, closeImg, data} : imgType) => {
                         <source srcSet={`src/assets/images/img_${dataImg.img}2.webp`} type="image/webp"/>
                         <img src={`src/assets/images/img_${dataImg.img}2.png`} alt=""/>
                       </picture>
-                      {imgUpdate === dataImg.img + '2' && <SelectedIcon/>}
+                      {imgUpdate === dataImg.img + '2' && <IconSelected/>}
                     </div>
                     <p>{dataImg.title}_2</p>
                   </li>

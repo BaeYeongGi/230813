@@ -32,23 +32,21 @@ const Home = () => {
     <Container>
       <Section content="top" />
       <SectionWrap>
-      <Title text="프로젝트" />
-      <Section
-        content="project"
-        data={homeData}
-        viewProjectImage={setProjectImg}
-      />
-      {
-        isViewImgContent && (
-          <ProjectImg
-            content={imgContent}
-            closeImg={closeProjectImage}  
+        <Title text="프로젝트" />
+          <Section
+            content="project"
             data={homeData}
+            viewProjectImage={setProjectImg}
           />
-        )
-      }
-      </SectionWrap>
-      <SectionWrap>
+        {
+          isViewImgContent && (
+            <ProjectImg
+              content={imgContent}
+              closeImg={closeProjectImage}  
+              data={homeData}
+            />
+          )
+        }
         <Title text="사용 가능한 기술" />
         <Section 
           content="tech"
@@ -75,14 +73,13 @@ const Home = () => {
 export default Home;
 
 const Container = styled.section`
-  display:flex;
-  flex-wrap:wrap;
+  flex-wrap:wrap
   justify-content:center;
-  width:1280px;
+  width:980px;
   margin:0 auto;
-  
 `;
 
 const SectionWrap = styled.div`
-  width:50%;
+  margin:0 auto;
 `;
+

@@ -17,10 +17,10 @@ const Title = ({ text }: textType) => {
 export default Title;
 
 const NormalTitle = styled.h2`
-    font-size: 2.8rem;
+    font-size: 3rem;
     padding-left: 16px;
     position: relative;
-    margin: 0 0 30px 0;
+    margin: 50px 0 30px 0;
     &::before {
       content:'';
       display:block;

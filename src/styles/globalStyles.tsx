@@ -29,6 +29,9 @@ const style = (theme: Theme) => css`
   a {
     background-color: transparent;
   }
+  a:active, a:focus, a:visited {
+    color:#000;
+  }
   abbr[title] {
     border-bottom: none; /* 1 */
     text-decoration: underline; /* 2 */
