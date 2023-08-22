@@ -1,14 +1,17 @@
 import React from 'react';
 import styled from '@emotion/styled';
-
+import { useTheme } from '@emotion/react';
 
 interface textType {
   text: string
 }
 
 const Title = ({ text }: textType) => {
+
+  const theme = useTheme();
+
   return (
-    <NormalTitle>
+    <NormalTitle theme={theme}>
       {text}
     </NormalTitle>
   );
@@ -21,6 +24,7 @@ const NormalTitle = styled.h2`
     padding-left: 16px;
     position: relative;
     margin: 50px 0 30px 0;
+    color:${props => props.theme.fontColor};
     &::before {
       content:'';
       display:block;

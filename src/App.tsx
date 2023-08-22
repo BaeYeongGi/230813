@@ -20,7 +20,6 @@ function App() {
     <div className="App">
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyles/>
-        {isDark ? '다크입니다' : '라이트입니다'}
         <Home />
         <Theme
           toggleDark={toggleDark}

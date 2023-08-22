@@ -114,16 +114,20 @@ const Section = ({ content, data, viewProjectImage }: sectionType) => {
 
 export default Section;
 
+
 const TopSection = styled.section`
   text-align:center;
+  margin:50px 0 0 0;
   .big_title {
     font-size:3.6rem;
     line-height:1.4;
     margin:0 0 10px 0;
+    color:${props => props.theme.fontColor};
   }
   .summary {
     font-size:1.8rem;
     line-height:1.4;
+    color:${props => props.theme.fontColor};
   }
 `;
 
@@ -131,10 +135,11 @@ const SmallTitle = styled.h3`
   font-size:2.2rem;
   font-weight:700;
   width:100%;
+  color:${props => props.theme.fontColor};
   span {
     font-weight:300;
     margin:0 6px 0 0;
-    color:#777;
+    color:${props => props.theme.fontSubColor};
   }
 `;
 
@@ -143,6 +148,7 @@ const InfoList = styled.ul`
   padding: 0 0 0 24px;
   li {
     line-height:1.5;
+    color:${props => props.theme.fontColor};
     &::before {
       content:'-';
       margin:0 4px 0 -16px;
@@ -153,6 +159,7 @@ const InfoList = styled.ul`
 
 const ProjectWrap = styled.div`
   > div {
+    >
     &:last-child {
       > ul {
         padding-bottom:0;
@@ -161,7 +168,6 @@ const ProjectWrap = styled.div`
     &:not(:last-child) {
       border-bottom:1px solid #ddd;
       margin-bottom:20px;
-
     }
   }
 `;
@@ -174,6 +180,7 @@ const ProjectInfo = styled.ul`
     width:50%;
     line-height:1.5;
     font-size:1.6rem;
+    color:${props => props.theme.fontColor};
     &::before {
       content:'-';
       margin:0 4px 0 0;
@@ -195,11 +202,12 @@ const ProjectInfo = styled.ul`
 const ImgButton = styled.button`
   padding:4px 8px;
   border:1px solid #ccc;
-  background-color:#fff;
+  background-color:${props => props.theme.bgColor};
   margin-right:6px;
   cursor:pointer;
+  color:${props => props.theme.fontColor};
   &:hover {
-    background-color:#f2f2f2;
+    background-color:${props => props.theme.hoverColor};
   }
 `;
 
@@ -212,6 +220,9 @@ const TechInfoWrap = styled.div`
     &:not(:last-child){
       border-bottom:1px solid #ddd;
       padding-bottom:16px;
+    }
+    dd {
+      color:${props => props.theme.fontColor};
     }
   }
 `;
@@ -252,6 +263,7 @@ const OthersInfo = styled.ul`
       display:inline-block;
       vertical-align:top;
       font-weight:normal;
+      color:${props => props.theme.fontColor};
     }
   }
 `;
@@ -261,8 +273,10 @@ const LinkInfo = styled.ul`
   margin-bottom:100px;
   > li {
     margin-right:6px;
-    :hover {
-      background-color:#f2f2f2;
+    &:hover {
+      > a {
+        background-color:${props => props.theme.hoverColor};
+      }
     }
     > a {
       display:block;
@@ -272,7 +286,7 @@ const LinkInfo = styled.ul`
       border:1px solid #666;
       border-radius:4px;
       svg {
-        stroke:#000;
+        stroke:${props => props.theme.fontColor};
       }
       h3 {
         width:100%;
@@ -280,6 +294,7 @@ const LinkInfo = styled.ul`
         font-size:1.6rem;
         color:#000;
         font-weight:400; 
+        color:${props => props.theme.fontColor};
       }
     }
   }

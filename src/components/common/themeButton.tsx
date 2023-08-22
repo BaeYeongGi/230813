@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
-type ThemType = {
+type ThemeType = {
   toggleDark:VoidFunction;
   isDark:boolean;
 }
 
-const ThemeButton = ({toggleDark, isDark}: ThemType) => {
+const ThemeButton = ({toggleDark, isDark}: ThemeType) => {
   return (
     <Button
     className={isDark ? 'active' : ''}
