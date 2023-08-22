@@ -13,10 +13,10 @@ const Section = ({ content, data, viewProjectImage }: sectionType) => {
     {
       content === 'top' && ( 
       <TopSection>
-        <h1 className="big_title">💻 프론트엔드 개발을 잘하고 싶은 퍼블리셔 배영기 입니다.</h1>
+        <h1 className="big_title">🧑‍💻배영기 이력서</h1>
         <p className="summary">
-          서울에서 근무하는 4년차 퍼블리셔 입니다. 사용자의 입장에서 사용하기 좋은 페이지를 고민하고 구현합니다.<br/>
-          더 나아가 데이터를 시각화 하고 비즈니스 로직을 처리하는 프론트엔드 개발자가 되기 위해 노력하겠습니다. 
+          서울에서 근무하는 소프트웨어 엔지니어 입니다. 사용자의 입장에서 사용하기 좋은 페이지를 고민하고 구현합니다.<br/>
+          더 나아가 데이터를 시각화 하고 비즈니스 로직을 처리하는 프론트엔드 개발도 함께 익히겠습니다. 
         </p>
       </TopSection>
       )

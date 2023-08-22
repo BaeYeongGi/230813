@@ -31,41 +31,39 @@ const Home = () => {
   return (
     <Container>
       <Section content="top" />
-      <SectionWrap>
-        <Title text="프로젝트" />
-          <Section
-            content="project"
-            data={homeData}
-            viewProjectImage={setProjectImg}
-          />
-        {
-          isViewImgContent && (
-            <ProjectImg
-              content={imgContent}
-              closeImg={closeProjectImage}  
-              data={homeData}
-            />
-          )
-        }
-        <Title text="사용 가능한 기술" />
-        <Section 
-          content="tech"
+      <Title text="프로젝트" />
+        <Section
+          content="project"
           data={homeData}
+          viewProjectImage={setProjectImg}
         />
-        <Title text="레거시 서비스와 함께한 노력들" />
-        <Section 
-          content="legacy"
-          data={homeData}
-        />        
-        <Title text="그 외" />
-        <Section 
-          content="others"
-        />  
-        <Title text="링크" />
-        <Section 
-          content="link"
-        />  
-      </SectionWrap>
+      {
+        isViewImgContent && (
+          <ProjectImg
+            content={imgContent}
+            closeImg={closeProjectImage}  
+            data={homeData}
+          />
+        )
+      }
+      <Title text="사용 가능한 기술" />
+      <Section 
+        content="tech"
+        data={homeData}
+      />
+      <Title text="레거시 서비스와 함께한 노력들" />
+      <Section 
+        content="legacy"
+        data={homeData}
+      />        
+      <Title text="그 외" />
+      <Section 
+        content="others"
+      />  
+      <Title text="링크" />
+      <Section 
+        content="link"
+      />  
     </Container>
   );
 };
@@ -73,13 +71,8 @@ const Home = () => {
 export default Home;
 
 const Container = styled.section`
-  flex-wrap:wrap
-  justify-content:center;
   width:980px;
   margin:0 auto;
 `;
 
-const SectionWrap = styled.div`
-  margin:0 auto;
-`;
 
