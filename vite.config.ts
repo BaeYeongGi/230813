@@ -1,8 +1,13 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
 import svgr from "vite-plugin-svgr";
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/resume/',
+  build: {
+    outDir: 'dist'
+  },
   plugins: [
     svgr({
       svgrOptions: {
@@ -15,7 +20,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      src: "/src"
+      src: "/src",
     }
   }
 })

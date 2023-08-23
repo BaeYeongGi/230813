@@ -19,13 +19,15 @@ const Img = ({content, closeImg, data} : imgType) => {
     }
   },[])
 
+  console.log('aa',)
+
   return (
     <Dimmed onClick={closeImg} className={contentType}> 
       <span className="close" onClick={closeImg} aria-label="이미지 포트폴리오 창닫기"></span>
       <ImgContainer>
         <picture>
-          <source srcSet={`src/assets/images/img_${imgUpdate}.webp`} type="image/webp"/>
-          <img className="main_img" src={`src/assets/images/img_${imgUpdate}.png`} alt="" />
+          <source srcSet={`${import.meta.env.BASE_URL}images/img_${imgUpdate}.webp`} type="image/webp"/>
+          <img className="main_img" src={`${import.meta.env.BASE_URL}images/img_${imgUpdate}.png`} alt="" />
         </picture>
       </ImgContainer>
       <ImgListWrap ref={imgListRef}>
@@ -40,8 +42,8 @@ const Img = ({content, closeImg, data} : imgType) => {
                     onClick={() => updateImgContent(dataImg.img + '1')}>
                     <div className="img_wrap">
                       <picture>
-                        <source srcSet={`src/assets/images/img_${dataImg.img}1.webp`} type="image/webp"/>
-                        <img src={`src/assets/images/img_${dataImg.img}1.png`} alt=""/>
+                        <source srcSet={`${import.meta.env.BASE_URL}images/img_${dataImg.img}1.webp`} type="image/webp"/>
+                        <img src={`${import.meta.env.BASE_URL}images/img_${dataImg.img}1.png`} alt=""/>
                       </picture>
                       {imgUpdate === dataImg.img + '1' && <IconSelected/>}
                     </div>
@@ -52,8 +54,8 @@ const Img = ({content, closeImg, data} : imgType) => {
                   onClick={() => updateImgContent(dataImg.img + '2')}>
                     <div className="img_wrap">
                       <picture>
-                        <source srcSet={`src/assets/images/img_${dataImg.img}2.webp`} type="image/webp"/>
-                        <img src={`src/assets/images/img_${dataImg.img}2.png`} alt=""/>
+                        <source srcSet={`${import.meta.env.BASE_URL}images/img_${dataImg.img}2.webp`} type="image/webp"/>
+                        <img src={`${import.meta.env.BASE_URL}images/img_${dataImg.img}2.png`} alt=""/>
                       </picture>
                       {imgUpdate === dataImg.img + '2' && <IconSelected/>}
                     </div>
