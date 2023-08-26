@@ -76,7 +76,8 @@ export default Img;
 
 const Dimmed = styled.div`
   display:flex;
-  align-items:center;
+  // align-items:center;
+  align-items:flex-start;
   justify-content:center;
   width:100%;
   height:100%;
@@ -121,25 +122,46 @@ const Dimmed = styled.div`
   ${breakPoints.maxHeight} {
     padding: 20px;
   }
+  ${breakPoints.tablet} {
+    flex-wrap:wrap;
+    padding:20px;
+  }
 `;
 
 const ImgContainer = styled.div`
+  height:100%;
   .main_img {
     display:block;
     max-width:1400px;
     max-height:800px;
+    height:100%;
     margin:0 16px 0 0;
     box-shadow:0 4px 4px 0 rgba(0,0,0,0.2);
     width:470px;
+    object-fit:cover;
+    object-position:top;
   }
   ${breakPoints.maxHeight} {
+    // width:50%;
+    
     .main_img {
-      // height:100%;
+      height:100%;
+      max-width:none;
+      max-height:none;
     }
   }
   ${breakPoints.labtop} {
+    width:auto;
     .main_img {
       width: 100%;
+    }
+  }
+  ${breakPoints.tablet} {
+    height:calc(100% - 200px);
+    margin-bottom:10px;
+    .main_img {
+
+
     }
   }
 `;
@@ -149,26 +171,31 @@ const ImgListWrap = styled.div`
   width:360px;
   height:100%;
   &::-webkit-scrollbar {
-    width:10px;
+    width:6px;
   }
   &::-webkit-scrollbar-thumb {
-    border-radius:10px;
+    border-radius:6px;
     background:#222;
   }
   &::-webkit-scrollbar-track {
     background-color:#fff;
-    border-radius:10px;
+    border-radius:6px;
   }
   ${breakPoints.labtop} {
     width:178px;
+  }
+  ${breakPoints.tablet} {
+    height:180px;
+    display:flex;
+    width:100%;
+    overflow-y:hidden;
+    overflow-x:auto;
+ 
   }
 `;
 
 const ImgList = styled.ul`
   display:flex;
-  // flex-wrap:wrap;
-  // width:300px;
-  // height:50px;
   margin-left:10px;
   li {
     width:150px;
@@ -221,7 +248,31 @@ const ImgList = styled.ul`
     flex-wrap:wrap;
     width:150px;
     li {
-      width:100%;
+      // width:100%;
+    }
+  }
+  ${breakPoints.tablet} {
+    flex-wrap:nowrap;
+    width:200px;
+    margin-left:0;
+    li {
+      width:100px;
+      .img_wrap {
+        img {
+          height:100px;
+        }
+        &::before {
+          height:100px;
+        }
+      }
+      p {
+        display:-webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        word-break:break-all;
+      }
     }
   }
 `;
