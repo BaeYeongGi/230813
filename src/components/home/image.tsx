@@ -177,6 +177,9 @@ const ImgContainer = styled.div`
     }
   }
   ${breakPoints.tablet} {
+    &.qatar {
+      width:auto;
+    }
     height:calc(100% - 200px);
     margin-bottom:10px;
   }
