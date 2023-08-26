@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { ReactComponent as IconSelected  } from 'src/assets/images/icon_checked.svg';
 import { imgType } from 'src/types/home';
 import { breakPoints } from 'src/utils/useBreakPoints';
+import { detectTabletSize } from 'src/utils/userAgent';
 
 const Img = ({content, closeImg, data} : imgType) => {
   const [ imgUpdate, setImgUpdate ] = useState<string>(content);
@@ -11,12 +12,14 @@ const Img = ({content, closeImg, data} : imgType) => {
     setImgUpdate(name);
   }
   const imgListRef = useRef<HTMLDivElement>(null)
+  const getDetectTableSize = detectTabletSize();
 
   // 프로젝트 ScreenButton 클릭시 scroll position 값 조정
   useEffect(() => {
     const imgList = imgListRef.current?.getElementsByClassName(imgUpdate)[0];
     if(imgListRef.current && imgList instanceof HTMLElement){
-      imgListRef.current.scrollTo(0, imgList.offsetTop - 40);
+      getDetectTableSize ? imgListRef.current.scrollTo(imgList.offsetLeft - 40, 0) :
+      imgListRef.current.scrollTo(0, imgList.offsetTop - 40)
     }
   },[])
 
