@@ -194,13 +194,14 @@ const ProjectInfo = styled.ul`
       font-weight:700;
     }
     &.img_button_wrap {
+      width:100%;
       margin:10px 0 0 8px;
       &::before {
         display:none;
       }
     }
   }
-  ${breakPoints.mobile} {
+  ${breakPoints.tablet} {
     li {
       width:100%;
     }

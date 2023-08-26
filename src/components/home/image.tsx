@@ -26,7 +26,7 @@ const Img = ({content, closeImg, data} : imgType) => {
   return (
     <Dimmed onClick={closeImg} className={contentType}> 
       <span className="close" onClick={closeImg} aria-label="이미지 포트폴리오 창닫기"></span>
-      <ImgContainer>
+      <ImgContainer className={contentType}>
         <picture>
           <source srcSet={`${import.meta.env.BASE_URL}images/img_${imgUpdate}.webp`} type="image/webp"/>
           <img className="main_img" src={`${import.meta.env.BASE_URL}images/img_${imgUpdate}.png`} alt="" />
@@ -125,6 +125,13 @@ const Dimmed = styled.div`
   ${breakPoints.maxHeight} {
     padding: 20px;
   }
+  ${breakPoints.pc} {
+    &.qatar {
+      .main_img {
+        width:100%;
+      }
+    }
+  }
   ${breakPoints.tablet} {
     flex-wrap:wrap;
     padding:20px;
@@ -143,22 +150,24 @@ const ImgContainer = styled.div`
   height:100%;
   .main_img {
     display:block;
-    max-width:1400px;
-    max-height:800px;
     height:100%;
+    max-height:800px;
     margin:0 16px 0 0;
     box-shadow:0 4px 4px 0 rgba(0,0,0,0.2);
-    width:470px;
     object-fit:cover;
     object-position:top;
   }
-  ${breakPoints.maxHeight} {
-    // width:50%;
-    
+
+  ${breakPoints.maxHeight} {  
     .main_img {
       height:100%;
       max-width:none;
       max-height:none;
+    }
+  }
+  ${breakPoints.pc} {  
+    &.qatar {
+      width:calc(100% - 320px);
     }
   }
   ${breakPoints.labtop} {
@@ -205,6 +214,7 @@ const ImgListWrap = styled.div`
 const ImgList = styled.ul`
   display:flex;
   margin-left:10px;
+  width:300px;
   li {
     width:150px;
     margin: 4px 4px 14px 4px;
