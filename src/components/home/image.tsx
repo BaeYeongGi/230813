@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { ReactComponent as IconSelected  } from 'src/assets/images/icon_checked.svg';
 import { imgType } from 'src/types/home';
+import { breakPoints } from 'src/utils/useBreakPoints';
 
 const Img = ({content, closeImg, data} : imgType) => {
   const [ imgUpdate, setImgUpdate ] = useState<string>(content);
@@ -18,8 +19,6 @@ const Img = ({content, closeImg, data} : imgType) => {
       imgListRef.current.scrollTo(0, imgList.offsetTop - 40);
     }
   },[])
-
-  console.log('aa',)
 
   return (
     <Dimmed onClick={closeImg} className={contentType}> 
@@ -79,7 +78,6 @@ const Dimmed = styled.div`
   display:flex;
   align-items:center;
   justify-content:center;
-  // justify-content:space-evenly;
   width:100%;
   height:100%;
   position:fixed;
@@ -96,6 +94,7 @@ const Dimmed = styled.div`
     width:40px;
     height:40px;
     cursor:pointer;
+    z-index:1;
     &::before, &::after {
       content:'';
       display:block;
@@ -119,6 +118,9 @@ const Dimmed = styled.div`
       width:auto;
     }
   } 
+  ${breakPoints.maxHeight} {
+    padding: 20px;
+  }
 `;
 
 const ImgContainer = styled.div`
@@ -129,6 +131,16 @@ const ImgContainer = styled.div`
     margin:0 16px 0 0;
     box-shadow:0 4px 4px 0 rgba(0,0,0,0.2);
     width:470px;
+  }
+  ${breakPoints.maxHeight} {
+    .main_img {
+      // height:100%;
+    }
+  }
+  ${breakPoints.labtop} {
+    .main_img {
+      width: 100%;
+    }
   }
 `;
 
@@ -146,6 +158,9 @@ const ImgListWrap = styled.div`
   &::-webkit-scrollbar-track {
     background-color:#fff;
     border-radius:10px;
+  }
+  ${breakPoints.labtop} {
+    width:178px;
   }
 `;
 
@@ -200,6 +215,13 @@ const ImgList = styled.ul`
       color:#fff;
       font-size:1.6rem;
       word-break:keep-all;
+    }
+  }
+  ${breakPoints.labtop} {
+    flex-wrap:wrap;
+    width:150px;
+    li {
+      width:100%;
     }
   }
 `;

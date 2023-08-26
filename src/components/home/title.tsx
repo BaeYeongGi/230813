@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '@emotion/react';
+import { breakPoints } from 'src/utils/useBreakPoints';
 
 interface textType {
   text: string
@@ -20,20 +21,23 @@ const Title = ({ text }: textType) => {
 export default Title;
 
 const NormalTitle = styled.h2`
-    font-size: 3rem;
-    padding-left: 16px;
-    position: relative;
-    margin: 50px 0 30px 0;
-    color:${props => props.theme.fontColor};
-    &::before {
-      content:'';
-      display:block;
-      width:6px;
-      height:6px;
-      border-radius:6px;
-      border:2px solid #4072ff;
-      position:absolute;
-      top:0;
-      left:0;
-    }
+  font-size: 3rem;
+  padding-left: 16px;
+  position: relative;
+  margin: 50px 0 30px 0;
+  color:${props => props.theme.fontColor};
+  &::before {
+    content:'';
+    display:block;
+    width:6px;
+    height:6px;
+    border-radius:6px;
+    border:2px solid #4072ff;
+    position:absolute;
+    top:0;
+    left:0;
+  }
+  ${breakPoints.tablet}{
+    line-height:1.4;
+  }
 `

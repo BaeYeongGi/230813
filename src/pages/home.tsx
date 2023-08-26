@@ -5,6 +5,7 @@ import Title from "src/components/home/title";
 import homeJSON from 'src/json/home.json';
 import ProjectImg from 'src/components/home/image';
 import { secionDataType } from 'src/types/home';
+import { breakPoints } from 'src/utils/useBreakPoints';
 
 const Home = () => {
   const [homeData, setHomeData] = useState<secionDataType>();  
@@ -73,6 +74,13 @@ export default Home;
 const Container = styled.section`
   width:980px;
   margin:0 auto;
+  box-sizing:border-box;
+  ${breakPoints.labtop} {
+    width:100%;
+    padding:0 20px;
+  }
+
+
 `;
 
 

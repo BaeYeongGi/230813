@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import { ReactComponent as IconGithub  } from 'src/assets/images/icon_github.svg';
 import { ReactComponent as IconBlog  } from 'src/assets/images/icon_blog.svg';
 import { ReactComponent as IconEmail  } from 'src/assets/images/icon_email.svg';
-
 import { jsonDataType, sectionType } from 'src/types/home';
+import { breakPoints } from 'src/utils/useBreakPoints';
 
 const Section = ({ content, data, viewProjectImage }: sectionType) => {
   
@@ -141,6 +141,9 @@ const SmallTitle = styled.h3`
     margin:0 6px 0 0;
     color:${props => props.theme.fontSubColor};
   }
+  ${breakPoints.tablet}{
+    line-height:1.5;
+  }
 `;
 
 const InfoList = styled.ul`
@@ -195,6 +198,11 @@ const ProjectInfo = styled.ul`
       &::before {
         display:none;
       }
+    }
+  }
+  ${breakPoints.mobile} {
+    li {
+      width:100%;
     }
   }
 `;
