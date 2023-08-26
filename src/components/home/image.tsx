@@ -125,6 +125,14 @@ const Dimmed = styled.div`
   ${breakPoints.tablet} {
     flex-wrap:wrap;
     padding:20px;
+    .close {
+      background-color:rgba(0,0,0,0.5);
+    }
+    &.qatar {
+      .main_img {
+        width:100%;
+      }
+    }
   }
 `;
 
@@ -159,10 +167,6 @@ const ImgContainer = styled.div`
   ${breakPoints.tablet} {
     height:calc(100% - 200px);
     margin-bottom:10px;
-    .main_img {
-
-
-    }
   }
 `;
 
@@ -185,9 +189,10 @@ const ImgListWrap = styled.div`
     width:178px;
   }
   ${breakPoints.tablet} {
+    width:100%;
     height:180px;
     display:flex;
-    width:100%;
+
     overflow-y:hidden;
     overflow-x:auto;
  
@@ -263,6 +268,10 @@ const ImgList = styled.ul`
         }
         &::before {
           height:100px;
+        }
+        svg {
+          width:32px;
+          height:32px;
         }
       }
       p {
