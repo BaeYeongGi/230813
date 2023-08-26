@@ -571,8 +571,11 @@ line-height:1.5;
 `,Wh=()=>{const[e,t]=z.useState(),[n,r]=z.useState(""),[l,i]=z.useState(!1);z.useEffect(()=>{t(Ih.data)},[]);const o=s=>{r(s),i(!0)},u=s=>{const c=s.target,m=s.currentTarget;c===m&&i(!1)};return w.jsxs(Bh,{children:[w.jsx(Gt,{content:"top"}),w.jsx(Fn,{text:"프로젝트"}),w.jsx(Gt,{content:"project",data:e,viewProjectImage:o}),l&&w.jsx(Fh,{content:n,closeImg:u,data:e}),w.jsx(Fn,{text:"사용 가능한 기술"}),w.jsx(Gt,{content:"tech",data:e}),w.jsx(Fn,{text:"레거시 서비스와 함께한 노력들"}),w.jsx(Gt,{content:"legacy",data:e}),w.jsx(Fn,{text:"그 외"}),w.jsx(Gt,{content:"others"}),w.jsx(Fn,{text:"링크"}),w.jsx(Gt,{content:"link"})]})},Bh=q.section`
   width:980px;
   margin:0 auto;
+  box-sizing:border-box;
   ${Of.labtop} {
+    width:100%;
     padding:0 20px;
   }
+
 
 `;function Hh(){const[e,t]=z.useState(()=>localStorage.getItem("theme")==="dark");z.useEffect(()=>{localStorage.setItem("theme",e?"dark":"light")},[e]);const n=()=>{t(r=>!r)};return w.jsx("div",{className:"App",children:w.jsxs(oh,{theme:e?wh:yh,children:[w.jsx(kh,{}),w.jsx(Wh,{}),w.jsx(gh,{toggleDark:n,isDark:e})]})})}Fi.createRoot(document.getElementById("root")).render(w.jsx(pa.StrictMode,{children:w.jsx(Hh,{})}));
