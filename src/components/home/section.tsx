@@ -269,6 +269,7 @@ const OthersInfo = styled.ul`
     line-height:1.5;
     position:relative;
     padding-left:12px;
+    color:${props => props.theme.fontColor};
     &::before{
       content:'-';
       margin:0 4px 0 0;
@@ -280,7 +281,6 @@ const OthersInfo = styled.ul`
       display:inline-block;
       vertical-align:top;
       font-weight:normal;
-      color:${props => props.theme.fontColor};
     }
   }
 `;
