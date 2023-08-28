@@ -395,6 +395,7 @@ line-height:1.5;
     line-height:1.5;
     position:relative;
     padding-left:12px;
+    color:${e=>e.theme.fontColor};
     &::before{
       content:'-';
       margin:0 4px 0 0;
@@ -406,7 +407,6 @@ line-height:1.5;
       display:inline-block;
       vertical-align:top;
       font-weight:normal;
-      color:${e=>e.theme.fontColor};
     }
   }
 `,$m=q.ul`
