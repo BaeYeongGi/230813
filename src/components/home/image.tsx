@@ -4,6 +4,8 @@ import { ReactComponent as IconSelected  } from 'src/assets/images/icon_checked.
 import { imgType } from 'src/types/home';
 import { breakPoints } from 'src/utils/useBreakPoints';
 import { detectTabletSize } from 'src/utils/userAgent';
+import { useBodyScrollLock } from 'src/utils/useScrollLock';
+
 
 const Img = ({content, closeImg, data} : imgType) => {
   const [ imgUpdate, setImgUpdate ] = useState<string>(content);
@@ -13,6 +15,16 @@ const Img = ({content, closeImg, data} : imgType) => {
   }
   const imgListRef = useRef<HTMLDivElement>(null)
   const getDetectTableSize = detectTabletSize();
+  const { lockScroll, openScroll } = useBodyScrollLock();
+
+  console.log()
+
+  useEffect(() => {
+    lockScroll();
+    return () => {
+      openScroll();
+    }
+  },[])
 
   // 프로젝트 ScreenButton 클릭시 scroll position 값 조정
   useEffect(() => {
@@ -39,8 +51,9 @@ const Img = ({content, closeImg, data} : imgType) => {
               return (
                 dataImg.img && (
                 <ImgList key={idx}>
-                  {[1, 2].map((num) => (
+                  {[1, 2].map((num, numIdx) => (
                   <li
+                    key={numIdx}
                     className={`${dataImg.img}${num}`}  
                     onClick={() => updateImgContent(`${dataImg.img}${num}`)}>
                     <div className="img_wrap">
