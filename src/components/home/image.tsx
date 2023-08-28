@@ -39,30 +39,20 @@ const Img = ({content, closeImg, data} : imgType) => {
               return (
                 dataImg.img && (
                 <ImgList key={idx}>
+                  {[1, 2].map((num) => (
                   <li
-                    className={dataImg.img + '1'}  
-                    onClick={() => updateImgContent(dataImg.img + '1')}>
+                    className={`${dataImg.img}${num}`}  
+                    onClick={() => updateImgContent(`${dataImg.img}${num}`)}>
                     <div className="img_wrap">
                       <picture>
-                        <source srcSet={`${import.meta.env.BASE_URL}images/img_${dataImg.img}1.webp`} type="image/webp"/>
-                        <img src={`${import.meta.env.BASE_URL}images/img_${dataImg.img}1.png`} alt=""/>
+                        <source srcSet={`${import.meta.env.BASE_URL}images/img_${dataImg.img}${num}.webp`} type="image/webp"/>
+                        <img src={`${import.meta.env.BASE_URL}images/img_${dataImg.img}${num}.png`} alt=""/>
                       </picture>
-                      {imgUpdate === dataImg.img + '1' && <IconSelected/>}
+                      {imgUpdate === `${dataImg.img}${num}` && <IconSelected/>}
                     </div>
-                    <p>{dataImg.title}_1</p>
+                    <p>{dataImg.title}_{num}</p>
                   </li>
-                  <li  
-                  className={dataImg.img + '2'}                
-                  onClick={() => updateImgContent(dataImg.img + '2')}>
-                    <div className="img_wrap">
-                      <picture>
-                        <source srcSet={`${import.meta.env.BASE_URL}images/img_${dataImg.img}2.webp`} type="image/webp"/>
-                        <img src={`${import.meta.env.BASE_URL}images/img_${dataImg.img}2.png`} alt=""/>
-                      </picture>
-                      {imgUpdate === dataImg.img + '2' && <IconSelected/>}
-                    </div>
-                    <p>{dataImg.title}_2</p>
-                  </li>
+                  ))}
                 </ImgList>
                 )
               )

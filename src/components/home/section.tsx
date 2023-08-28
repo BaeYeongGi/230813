@@ -91,10 +91,13 @@ const Section = ({ content, data, viewProjectImage }: sectionType) => {
     {
       content === "others" && (
         <OthersInfo>
-          <li><h3>slack, outlook 업무용 메신저를 사용한 비동기 커뮤니케이션에 익숙합니다.</h3></li>
-          <li><h3>confluence, jira 협업 툴 사용에 익숩합니다.</h3></li>
-          <li><h3>소나큐브 코드품질 관리 분석도구를 통해 불필요한 코드와 버그 & 코드스멜을 수정할 수 있습니다.</h3></li>
-          <li><h3>항상 배워야 한다는 자세로 임하며, 업무에 필요한 기술이 있다면 학습하여 활용하도록 노력하겠습니다.</h3></li>
+          {
+            data?.others && (
+              data.others.map((contents:jsonDataType, dataIdx:number) => (
+                <li key={dataIdx}><h3>{contents.title}</h3></li>
+              ))
+            )
+          }
         </OthersInfo>
       )
     }
@@ -264,9 +267,14 @@ const LegacyInfo = styled.ul`
 const OthersInfo = styled.ul`
   > li {
     line-height:1.5;
+    position:relative;
+    padding-left:12px;
     &::before{
       content:'-';
       margin:0 4px 0 0;
+      position:absolute;
+      top:0px;
+      left:0;
     }
     h3 {
       display:inline-block;

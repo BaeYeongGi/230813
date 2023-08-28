@@ -60,6 +60,7 @@ const Home = () => {
       <Title text="그 외" />
       <Section 
         content="others"
+        data={homeData}
       />  
       <Title text="링크" />
       <Section 

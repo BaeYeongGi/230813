@@ -7,13 +7,10 @@ import Home from 'src/pages/home';
 
 function App() {
   const [isDark, setIsDark] = useState(() => localStorage.getItem('theme') === 'dark');
-  
-  useEffect(() => {
-    localStorage.setItem('theme', isDark ? 'dark' : 'light')
-  },[isDark])
 
   const toggleDark = () => {
     setIsDark(prev => !prev);
+    localStorage.setItem('theme', isDark ? 'light' : 'dark')
   }
 
   return (

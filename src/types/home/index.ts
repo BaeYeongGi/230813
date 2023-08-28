@@ -10,13 +10,14 @@ export interface secionDataType {
   project: jsonDataType[];
   tech: jsonDataType[];
   legacy: jsonDataType[];
+  others: jsonDataType[];
 }
 
 export interface jsonDataType {
   id: number;
   since?: string;
   title: string;
-  list?: Array<string>;
+  list?: string[];
   img?: string;
   text?: string;
 }
