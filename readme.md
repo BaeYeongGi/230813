@@ -19,9 +19,9 @@ npm run dev / npm run build
 ```
 /
   public/
+    images/
   src/
     assets/
-      images/
     components/
       common/
         themeButton.tsx
@@ -41,6 +41,9 @@ npm run dev / npm run build
       theme.d.ts
     utils/
       theme.ts
+      useBreakPoints.ts
+      userAgent.ts
+      useScrollLock.ts
     App.tsx
   package.json
   tsconfig.json
