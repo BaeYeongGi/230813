@@ -17,8 +17,6 @@ const Img = ({content, closeImg, data} : imgType) => {
   const getDetectTableSize = detectTabletSize();
   const { lockScroll, openScroll } = useBodyScrollLock();
 
-  console.log()
-
   useEffect(() => {
     lockScroll();
     return () => {

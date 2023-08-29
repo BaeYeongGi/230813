@@ -36,10 +36,10 @@ const Section = ({ content, data, viewProjectImage }: sectionType) => {
                   ))
                 }
                 {
-                  contents.img && (
+                  contents.img && viewProjectImage && (
                     <li className="img_button_wrap">
-                      <ImgButton onClick={() => viewProjectImage?.(`${contents.img}1`)}>First Screen</ImgButton>
-                      <ImgButton onClick={() => viewProjectImage?.(`${contents.img}2`)}>Second Screen</ImgButton>
+                      <ImgButton onClick={() => viewProjectImage(`${contents.img}1`)}>First Screen</ImgButton>
+                      <ImgButton onClick={() => viewProjectImage(`${contents.img}2`)}>Second Screen</ImgButton>
                     </li>
                   )
                 }

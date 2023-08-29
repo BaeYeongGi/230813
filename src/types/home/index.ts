@@ -1,7 +1,8 @@
+
 export interface sectionType {
   content: string;
   projectData?: jsonDataType[];
-  viewProjectImage?: React.MouseEventHandler<HTMLButtonElement> | any;
+  viewProjectImage?: (imgUrl: string) => void;
   legacyData?: jsonDataType[];
   data?: secionDataType;
 }
